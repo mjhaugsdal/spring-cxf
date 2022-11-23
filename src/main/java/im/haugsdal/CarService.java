@@ -30,7 +30,7 @@ public interface CarService {
     @WebResult(name = "banana")
     Car xmlBanana(@WebParam Car car);
 
-    @Path("/extBean")
+    @Path("/banana")
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
