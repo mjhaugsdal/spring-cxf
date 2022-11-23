@@ -4,18 +4,18 @@ import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 
-public class MyBean {
+public class Car {
 
     @JsonProperty
-    private String name;
+    private String color;
 
-    @JsonSetter("name")
-    public void setName(String name) {
-        this.name = name;
+    @JsonGetter
+    public String getColor() {
+        return color;
     }
 
-    @JsonGetter("name")
-    public String getName() {
-        return name;
+    @JsonSetter
+    public void setColor(String color) {
+        this.color = color;
     }
 }

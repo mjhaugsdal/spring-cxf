@@ -6,8 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider;
-import im.haugsdal.json.MyBean;
-import im.haugsdal.xml.Banana;
+import im.haugsdal.json.Car;
 import org.apache.cxf.jaxrs.JAXRSServerFactoryBean;
 import org.apache.cxf.jaxrs.client.JAXRSClientFactoryBean;
 import org.apache.cxf.jaxws.JaxWsProxyFactoryBean;
@@ -15,10 +14,10 @@ import org.apache.cxf.jaxws.JaxWsServerFactoryBean;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-class FruitServiceImplTest {
+class CarServiceImplTest {
 
-    static FruitService fruitService;
-    static FruitService jaxrsFruitService;
+    static CarService carService;
+    static CarService jaxrsCarService;
 
     @BeforeAll
     static void setup() {
@@ -26,13 +25,13 @@ class FruitServiceImplTest {
         providers.add(new JacksonJsonProvider());
 
         var jaxWsServerFactoryBean = new JaxWsServerFactoryBean();
-        jaxWsServerFactoryBean.setServiceClass(FruitServiceImpl.class);
+        jaxWsServerFactoryBean.setServiceClass(CarServiceImpl.class);
         jaxWsServerFactoryBean.setAddress("http://localhost:8888");
         var fruitServer = jaxWsServerFactoryBean.create();
         fruitServer.start();
 
         JAXRSServerFactoryBean jaxrsServerFactoryBean = new JAXRSServerFactoryBean();
-        jaxrsServerFactoryBean.setServiceClass(FruitServiceImpl.class);
+        jaxrsServerFactoryBean.setServiceClass(CarServiceImpl.class);
         jaxrsServerFactoryBean.setAddress("http://localhost:8889");
         jaxrsServerFactoryBean.setProviders(providers);
         var jaxrsFruitServer = jaxrsServerFactoryBean.create();
@@ -40,39 +39,39 @@ class FruitServiceImplTest {
 
         var jaxWsProxyFactoryBean = new JaxWsProxyFactoryBean();
         jaxWsProxyFactoryBean.setAddress("http://localhost:8888");
-        jaxWsProxyFactoryBean.setServiceClass(FruitService.class);
-        fruitService = (FruitService) jaxWsProxyFactoryBean.create();
+        jaxWsProxyFactoryBean.setServiceClass(CarService.class);
+        carService = (CarService) jaxWsProxyFactoryBean.create();
 
         var jaxrsClientFactoryBean = new JAXRSClientFactoryBean();
-        jaxrsClientFactoryBean.setResourceClass(FruitService.class);
+        jaxrsClientFactoryBean.setResourceClass(CarService.class);
         jaxrsClientFactoryBean.setAddress("http://localhost:8889");
 
         jaxrsClientFactoryBean.setProviders(providers);
-        jaxrsFruitService = (FruitService) jaxrsClientFactoryBean.create();
+        jaxrsCarService = (CarService) jaxrsClientFactoryBean.create();
 
     }
 
     @org.junit.jupiter.api.Test
     void ping() {
-        var pong = fruitService.ping("ping");
+        var pong = carService.ping("ping");
         System.out.println(pong);
         assertEquals("pong", pong);
     }
 
     @Test
-    void banana() {
-        var banana = new Banana();
+    void xmlBanana() {
+        var banana = new im.haugsdal.xml.Car();
         banana.setColor("yellow");
-        banana = fruitService.banana(banana);
+        banana = carService.xmlBanana(banana);
         assertEquals("green", banana.getColor());
     }
 
     @Test
-    void extendableBean() {
-        var bean = new MyBean();
-        bean.setName("something");
-        bean = jaxrsFruitService.bean(bean);
-        assertEquals("something else", bean.getName());
+    void jsonBanana() {
+        var bean = new Car();
+        bean.setColor("yellow");
+        bean = jaxrsCarService.jsonBanana(bean);
+        assertEquals("green", bean.getColor());
 
     }
 

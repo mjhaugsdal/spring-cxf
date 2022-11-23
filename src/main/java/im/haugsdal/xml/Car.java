@@ -9,7 +9,7 @@ import javax.xml.bind.annotation.XmlType;
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Banana")
-public class Banana {
+public class Car {
 
     @XmlElement(required = true, name = "color")
     private String color;

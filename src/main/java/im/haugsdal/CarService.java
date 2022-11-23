@@ -6,18 +6,16 @@ import javax.jws.WebParam;
 import javax.jws.WebResult;
 import javax.jws.WebService;
 import javax.ws.rs.Consumes;
-import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import im.haugsdal.json.MyBean;
-import im.haugsdal.xml.Banana;
+import im.haugsdal.xml.Car;
 
 @WebService(serviceName = "FruitService")
 @Path("/fruit")
-public interface FruitService {
+public interface CarService {
 
 
     /*@Path("/ping")
@@ -30,12 +28,12 @@ public interface FruitService {
 
     @WebMethod
     @WebResult(name = "banana")
-    Banana banana(@WebParam Banana banana);
+    Car xmlBanana(@WebParam Car car);
 
     @Path("/extBean")
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    MyBean bean(MyBean extendableBean);
+    im.haugsdal.json.Car jsonBanana(im.haugsdal.json.Car car);
 
 }
