@@ -13,7 +13,7 @@ import javax.ws.rs.core.MediaType;
 
 import im.haugsdal.xml.Car;
 
-@WebService(serviceName = "FruitService")
+@WebService(serviceName = "CarService")
 @Path("/fruit")
 public interface CarService {
 
