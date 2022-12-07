@@ -35,6 +35,9 @@ public class Main {
             if(true) {
                 System.out.println("");
             }
+            if(false) {
+                System.out.println("");
+            }
         }
 
         return args -> {
