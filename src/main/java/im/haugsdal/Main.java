@@ -29,16 +29,21 @@ public class Main {
 
     @Bean
     public CommandLineRunner commandLineRunner(ApplicationContext ctx) {
+
+        //Crap code
+        for(int i = 0; i<= 10; i++) {
+            if(true) {
+                System.out.println("");
+            }
+        }
+
         return args -> {
-
             System.out.println("Let's inspect the beans provided by Spring Boot:");
-
             String[] beanNames = ctx.getBeanDefinitionNames();
             Arrays.sort(beanNames);
             for (String beanName : beanNames) {
                 System.out.println(beanName);
             }
-
         };
     }
 
