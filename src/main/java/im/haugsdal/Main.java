@@ -54,7 +54,7 @@ public class Main {
     public Server rsServer() {
         JAXRSServerFactoryBean endpoint = new JAXRSServerFactoryBean();
         endpoint.setBus(bus);
-        endpoint.setAddress("http://localhost:8888/rest");
+        endpoint.setAddress("http://localhost:8081/rest");
         endpoint.setServiceBean(new CarServiceImpl());
         endpoint.setFeatures(List.of(new Swagger2Feature()));
         return endpoint.create();
