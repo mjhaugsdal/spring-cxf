@@ -14,7 +14,7 @@ pipeline {
         }
         stage('codescene') {
             steps {
-                  codescene analyzeBranchDiff: true, baseRevision: 'origin/master', credentialsId: 'jenkins-bot', deltaAnalysisUrl: 'http://172.17.0.3:3003/projects/1/delta-analysis', failOnDecliningCodeHealth: true, failOnFailedGoal: true, originUrl: '', repository: 'spring-cxf'
+                  codescene analyzeBranchDiff: true, baseRevision: 'origin/master', credentialsId: 'jenkins-bot', deltaAnalysisUrl: 'http://20.100.172.84:3003/projects/1/delta-analysis', failOnDecliningCodeHealth: true, failOnFailedGoal: true, originUrl: '', repository: 'spring-cxf'
             }
         }
         stage('Deploy') {
