@@ -14,11 +14,24 @@ public class Car {
     @XmlElement(required = true, name = "color")
     private String color;
 
+    @XmlElement(required = true, name = "brand")
+    private String brand;
+
+
     public String getColor() {
         return color;
     }
 
     public void setColor(String color) {
         this.color = color;
+    }
+
+
+    public String getBrand() {
+        return brand;
+    }
+
+    public void setBrand(String brand) {
+        this.brand = brand;
     }
 }
